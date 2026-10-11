@@ -1,0 +1,11 @@
+create extension if not exists pgcrypto;
+create table profiles (id uuid primary key references auth.users on delete cascade, nickname text unique not null, role text not null default 'user' check(role in ('user','admin')), created_at timestamptz default now());
+create table wiki_entries (id uuid primary key default gen_random_uuid(), slug text unique not null, category text not null, title text not null, summary text, body text not null default '', image_url text, updated_at timestamptz default now());
+create table guides (id uuid primary key default gen_random_uuid(), author_id uuid references profiles(id), title text not null, body text not null, image_url text, created_at timestamptz default now(), updated_at timestamptz default now());
+create table questions (id uuid primary key default gen_random_uuid(), author_id uuid references profiles(id), title text not null, body text not null, image_url text, accepted_answer_id uuid, created_at timestamptz default now(), updated_at timestamptz default now());
+create table answers (id uuid primary key default gen_random_uuid(), question_id uuid references questions(id) on delete cascade, author_id uuid references profiles(id), body text not null, image_url text, created_at timestamptz default now());
+alter table questions add constraint accepted_answer_fk foreign key (accepted_answer_id) references answers(id);
+create table content_wiki_links (id bigint generated always as identity primary key, wiki_id uuid references wiki_entries(id) on delete cascade, guide_id uuid references guides(id) on delete cascade, question_id uuid references questions(id) on delete cascade, check ((guide_id is not null)::int + (question_id is not null)::int = 1));
+create table votes (id bigint generated always as identity primary key, user_id uuid references profiles(id) on delete cascade, guide_id uuid references guides(id) on delete cascade, answer_id uuid references answers(id) on delete cascade, value smallint not null check(value in (-1,1)), unique(user_id,guide_id), unique(user_id,answer_id));
+create table search_events (id bigint generated always as identity primary key, user_id uuid references profiles(id), query text not null, created_at timestamptz default now());
+-- Guides/Q&A intentionally have NO seed rows. Community content starts completely blank.

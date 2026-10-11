@@ -1,0 +1,2 @@
+import Link from 'next/link'; import {wikiCategories} from '@/lib/data';
+export default function Wiki(){return <div className="shell page"><span className="kicker">KNOWLEDGE BASE</span><h1>Wiki</h1><p className="lead">운영자가 관리하는 캣 히어로 기본 정보입니다. 각 Wiki 페이지에서 관련 유저 공략과 질문을 함께 찾을 수 있습니다.</p><div className="categoryGrid big">{wikiCategories.map(x=><Link href={`/wiki/${x.slug}`} className={`category ${x.tone}`} key={x.slug}><b className="catIcon">{x.icon}</b><div><h3>{x.name}</h3><p>{x.desc}</p></div><span>›</span></Link>)}</div></div>}
