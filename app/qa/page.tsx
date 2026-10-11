@@ -1,2 +1,1 @@
-import {Composer} from '@/components/Composer'; import {EmptyState} from '@/components/EmptyState';
-export default function QA(){return <div className="shell page"><div className="pageTop"><div><span className="kicker">ASK & ANSWER</span><h1>Q&A</h1><p className="lead">막힌 부분을 질문하고, 다른 유저의 경험으로 해결하세요.</p></div><Composer type="question"/></div><div className="tabs"><button className="active">전체</button><button>답변 대기</button><button>해결됨</button><button>인기 질문</button></div><div className="card listEmpty"><EmptyState kind="qa"/></div></div>}
+import {QABoard} from '@/components/QABoard'; export default function QA(){return <div className="shell page"><QABoard/></div>}

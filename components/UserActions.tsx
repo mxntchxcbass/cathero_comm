@@ -1,0 +1,3 @@
+'use client';
+import Link from 'next/link'; import {useEffect,useState} from 'react'; import {createClient} from '@/lib/supabase';
+export function UserActions(){const [email,setEmail]=useState<string|null>(null); useEffect(()=>{const s=createClient();s.auth.getUser().then(({data})=>setEmail(data.user?.email??null));const {data:l}=s.auth.onAuthStateChange((_e,session)=>setEmail(session?.user.email??null));return()=>l.subscription.unsubscribe()},[]); if(!email)return <><Link className="ghost small" href="/login">로그인</Link><Link className="primary small" href="/login">회원가입</Link></>; return <><span className="userEmail">{email}</span><button className="ghost small" onClick={async()=>{await createClient().auth.signOut();location.href='/'}}>로그아웃</button></>}

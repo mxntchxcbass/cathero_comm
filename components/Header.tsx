@@ -1,2 +1,2 @@
-import Link from 'next/link';
-export function Header(){return <header className="header"><Link href="/" className="brand"><span className="catmark">ฅ</span>CatHero<span>.GG</span></Link><nav><Link href="/wiki">Wiki</Link><Link href="/guides">Guides</Link><Link href="/qa">Q&A</Link><Link href="/guild">Guild</Link></nav><div className="actions"><Link className="ghost" href="/login">로그인</Link><Link className="primary small" href="/login">회원가입</Link></div></header>}
+import Link from 'next/link'; import {UserActions} from './UserActions';
+export function Header(){return <header className="header"><Link href="/" className="brand"><span className="catmark">ฅ</span>CatHero<span>.GG</span></Link><nav><Link href="/wiki">Wiki</Link><Link href="/guides">Guides</Link><Link href="/qa">Q&A</Link><Link href="/guild">Guild</Link></nav><div className="actions"><UserActions/></div></header>}

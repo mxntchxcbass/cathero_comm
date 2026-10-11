@@ -1,1 +1,2 @@
-export default function Login(){return <div className="authWrap"><div className="card auth"><span className="catmark big">ฅ</span><h1>CatHero.GG</h1><p>이메일로 로그인하거나 새 계정을 만드세요.</p><label>이메일<input type="email" placeholder="cat@example.com"/></label><label>비밀번호<input type="password" placeholder="8자 이상"/></label><button className="primary full">로그인</button><button className="ghost full">회원가입</button><small>회원가입 시 닉네임을 설정합니다. 실제 인증은 Supabase 연결 후 활성화됩니다.</small></div></div>}
+import {AuthForm} from '@/components/AuthForm';
+export default function Login(){return <div className="authWrap"><div className="card auth"><span className="catmark big">ฅ</span><h1>CatHero.GG</h1><p>이메일로 로그인하거나 새 계정을 만드세요.</p><AuthForm/><small>작성한 공략과 질문은 계정에 연결됩니다.</small></div></div>}
