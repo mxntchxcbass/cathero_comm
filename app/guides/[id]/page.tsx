@@ -1,1 +1,14 @@
-import {GuideDetail} from '@/components/GuideDetail';export default function Page({params}:{params:{id:string}}){return <main className="shell page contentPage"><GuideDetail id={params.id}/></main>}
+import { GuideDetail } from '@/components/GuideDetail';
+
+type PageProps = {
+  params: Promise<{ id: string }>;
+};
+
+export default async function Page({ params }: PageProps) {
+  const { id } = await params;
+  return (
+    <main className="shell page contentPage">
+      <GuideDetail id={id} />
+    </main>
+  );
+}
