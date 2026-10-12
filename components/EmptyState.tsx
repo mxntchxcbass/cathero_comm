@@ -1,2 +1,2 @@
-import Link from 'next/link';
-export function EmptyState({kind}:{kind:'guide'|'qa'}){const g=kind==='guide';return <div className="empty"><div className="emptyIcon">{g?'📖':'💬'}</div><h3>{g?'아직 작성된 공략이 없어요.':'아직 등록된 질문이 없어요.'}</h3><p>{g?'여러분이 알고 있는 캣 히어로의 팁과 공략을 첫 번째로 공유해보세요.':'게임을 하다가 막힌 부분이 있다면 자유롭게 질문해보세요.'}</p><Link href={g?'/guides?write=1':'/qa?write=1'} className={g?'primary warm':'primary'}>＋ {g?'첫 공략 작성하기':'첫 질문하기'}</Link></div>}
+import {AuthRequiredLink} from './AuthRequiredLink';
+export function EmptyState({kind}:{kind:'guide'|'qa'}){const g=kind==='guide';return <div className="empty"><div className="emptyIcon">{g?'📖':'💬'}</div><h3>{g?'아직 작성된 공략이 없어요.':'아직 등록된 질문이 없어요.'}</h3><p>{g?'여러분이 알고 있는 캣 히어로의 팁과 공략을 첫 번째로 공유해보세요.':'게임을 하다가 막힌 부분이 있다면 자유롭게 질문해보세요.'}</p><AuthRequiredLink href={g?'/guides/new':'/qa/new'} className={g?'primary warm':'primary'}>＋ {g?'첫 공략 작성하기':'첫 질문하기'}</AuthRequiredLink></div>}

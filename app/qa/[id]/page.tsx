@@ -1,0 +1,1 @@
+import {QuestionDetail} from '@/components/QuestionDetail';export default function Page({params}:{params:{id:string}}){return <main className="shell page contentPage"><QuestionDetail id={params.id}/></main>}
