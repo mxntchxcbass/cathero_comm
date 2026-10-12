@@ -23,3 +23,11 @@ Open http://localhost:3000
 - Guild: 기존 길드 분배 시스템 연결을 위한 확장 지점
 
 현재 UI는 프론트 MVP이며 DB 쓰기/Auth wiring은 schema 기준으로 연결하면 됩니다.
+
+## v3.3 fixes
+- Home page now shows latest Guides and Q&A instead of permanent empty states.
+- Question author can cancel an accepted answer or switch acceptance to another answer.
+- Guide/question authors can edit their own posts from dedicated edit pages.
+- Answer authors can edit/delete their own answers.
+- Responsive layout reinforced for resized desktop windows, tablets, and mobile widths.
+- No DB migration is required beyond the existing v3 migration; `supabase/v3_3_migration.sql` is informational/idempotent.
